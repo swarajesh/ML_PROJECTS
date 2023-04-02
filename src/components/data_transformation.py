@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 import numpy as np 
 import pandas as pd
+import datetime as dt
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
@@ -28,13 +29,15 @@ class DataTransformation:
         
         '''
         try:
-            numerical_columns = ["writing_score", "reading_score"]
-            categorical_columns = [
-                "gender",
-                "race_ethnicity",
-                "parental_level_of_education",
-                "lunch",
-                "test_preparation_course",
+            numerical_columns = ['Quantity',	'InvoiceDate',	'UnitPrice',	'CustomerID']
+            latest_date=dt.datetime(2011,12,10)
+            categorical_columns = ['InvoiceNo',
+                                   'StockCode',
+                                   'lower',	
+                                   'Description',
+                                   'Country'
+
+
             ]
 
             num_pipeline= Pipeline(
@@ -68,8 +71,7 @@ class DataTransformation:
 
             )
 
-            return preprocessor
-        
+             return preprocessor
         except Exception as e:
             raise CustomException(e,sys)
         
